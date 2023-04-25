@@ -11,6 +11,8 @@ use backend\models\Book;
  */
 class BookSearch extends Book
 {
+  public $myBooksPageSize;
+
     /**
      * {@inheritdoc}
      */
@@ -19,6 +21,7 @@ class BookSearch extends Book
         return [
             [['id', 'yop', 'qty', 'price', 'regDate'], 'integer'],
             [['item_type', 'isbn', 'author', 'title', 'barcode', 'condition'], 'safe'],
+            [['myBooksPageSize'],'safe']
         ];
     }
 
@@ -46,12 +49,12 @@ class BookSearch extends Book
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' =>[ 
-                'pagesize' => 5
-            ]
         ]);
 
         $this->load($params);
+
+        $dataProvider->pagination->pageSize = ($this->myBooksPageSize !== NULL) ? $this->myBooksPageSize : 10;
+
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails

@@ -38,7 +38,8 @@ class Assets extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['barcode', 'category', 'condition', 'Asset_Particular'], 'required'],
+            // [['barcode', 'category', 'condition', 'Asset_Particular'], 'required'],
+            [['barcode'], 'unique', 'targetClass' => Assets::className(), 'message'=>'Barcode must be unique'],
             [['category', 'status'], 'integer'],
             [['Asset_Particular', 'Extra_note'], 'string'],
             [['barcode'], 'string', 'max' => 34],
@@ -135,17 +136,12 @@ public function currentOwner($asset_id){
       return 'Not assigned';
       }
 
-
-
-
-
 }
 
-public function initialOwner($asset_id){
-
-      $owner = Owners::find()->where(['asset_id'=>$asset_id])->one();
-      return $owner->issued_date;
-}
+      public function initialOwner($asset_id){
+            $owner = Owners::find()->where(['asset_id'=>$asset_id])->one();
+            return $owner->issued_date;
+      }
 
     public function upload()
     {

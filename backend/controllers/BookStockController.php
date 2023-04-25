@@ -41,7 +41,7 @@ class BookStockController extends Controller
                   'class' => AccessControl::className(),
                   'rules' => [
                       [
-                          'actions' => ['index','export-all','report','set-page-size'],
+                          'actions' => ['index','export-all','report','set-page-size','delete-stock-books'],
                           'roles'=>['Admin'],
                           'allow' => true,
                       ],

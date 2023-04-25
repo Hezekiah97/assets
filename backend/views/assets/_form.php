@@ -2,7 +2,8 @@
 
 use yii\helpers\Url;
 use yii\helpers\Html;
-use yii\bootstrap4\ActiveForm;
+// use yii\bootstrap4\ActiveForm;
+use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use backend\models\Categories;
 

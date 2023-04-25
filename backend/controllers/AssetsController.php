@@ -5,15 +5,16 @@ namespace backend\controllers;
 use Yii;
 use Mpdf\Mpdf;
 use yii\helpers\Html;
+use yii\web\Response;
 use yii\web\Controller;
 use backend\models\User;
 use yii\web\UploadedFile;
 use backend\models\Assets;
 use backend\models\Owners;
 use yii\filters\VerbFilter;
+use backend\models\Disposal;
 use yii\filters\AccessControl;
 use backend\models\AssetsSearch;
-use backend\models\Disposal;
 use yii\web\NotFoundHttpException;
 
 
@@ -90,7 +91,7 @@ class AssetsController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
-
+              
               if ($model->validate()) {
                 # code...
                 $asset = new Assets();
@@ -102,6 +103,7 @@ class AssetsController extends Controller
                 // $asset->RegBy = Yii::$app->user->identity->id;
                 $asset->RegDate = User::setTime();
                 $asset->save(false);
+                exit;
               }
               Yii::$app->session->setFlash('success','Conglatulation,asset added successfully!');
               
@@ -113,7 +115,7 @@ class AssetsController extends Controller
 
         return $this->render('create', [
             'model' => $model,
-        ]);
+      ]);
     }
 
     /**

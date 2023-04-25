@@ -111,7 +111,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
         ],
         'dataProvider' => $dataProvider,
+        'layout'=>'{summary}'.Html::activeDropDownList($searchModel, 'myBooksPageSize', [1=>1,3=>3,10 => 10, 20 => 20, 50 => 50, 100 => 100],['id'=>'myBooksPageSize',
+        'type'=>"button", 'class'=>"btn btn-light btn-sm dropdown-toggle mb-3", 'data-bs-toggle'=>"dropdown" ,'aria-haspopup'=>"true", 'aria-expanded'=>"false"
+        ])."{items}<br/>{pager}",
         'filterModel' => $searchModel,
+        'filterSelector' => '#myBooksPageSize',
         'columns' => [
             [
                 // 'class' => 'yii\grid\SerialColumn',

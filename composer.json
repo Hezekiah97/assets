@@ -19,7 +19,8 @@
         "yiisoft/yii2-bootstrap4": "~2.0.0",
         "mpdf/mpdf": "dev-master",
         "phpoffice/phpspreadsheet": "^1.23",
-        "nkovacs/yii2-pagesizer": "*"
+        "nkovacs/yii2-pagesizer": "*",
+        "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
