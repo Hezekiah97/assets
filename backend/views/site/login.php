@@ -70,5 +70,5 @@ $this->title = 'Login';
         <!-- end page -->
 
         <div class="text-center">
-        <script>document.write(new Date().getFullYear())</script> @ UONGOZI INSTITUTE
+        <!-- <script>document.write(new Date().getFullYear())</script> @ UONGOZI INSTITUTE -->
         </div>

@@ -303,10 +303,20 @@ $("#stock-report-button").click((e) => {
   const fromDate = $("#stock-report-from-date").val();
   const toDate = $("#stock-report-to-date").val();
   const condition = $("#stock-report-condition").val();
+  let status = null
 
-  if (condition === "all-available") {
-    window.location = `index.php?r=book-stock/export-all&date=${fromDate}`;
+  console.log(condition);
+
+
+  if(condition === 'all-available') {
+    status = 1
   }
+  status = 0
+
+
+  window.location = `index.php?r=book-stock/export-all&from_date=${fromDate}&to_date=${toDate}&status=${status}`;
+
+
 });
 
 // $('#dynamic-pagesize').change(() => {

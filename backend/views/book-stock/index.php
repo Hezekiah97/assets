@@ -73,6 +73,7 @@ $this->params['breadcrumbs'][] = $this->title;
                           <select class="form-control select2" data-toggle="select2" id="stock-report-condition">
                               <option>Select</option>
                               <option value="all-available">All (AVAILABLE)</option>
+                              <option value="all-not-available">All (NOT AVAILABLE)</option>
                               <option value="available-dar">Available (DAR)</option>
                               <option value="available-dodoma">Available (DODOMA)</option>
                               <option value="not-available-dar">Not Available (DAR)</option>

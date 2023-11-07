@@ -41,7 +41,7 @@ class BookStockController extends Controller
                   'class' => AccessControl::className(),
                   'rules' => [
                       [
-                          'actions' => ['index','export-all','report','set-page-size','delete-stock-books'],
+                          'actions' => ['index','export-all','report','set-page-size','delete-stock-books','create'],
                           'roles'=>['Admin'],
                           'allow' => true,
                       ],
@@ -91,6 +91,8 @@ class BookStockController extends Controller
         $model = new BookStock();
 
         if ($this->request->isPost) {
+            $model->item_type = 'Book';
+            // $model->stock_date = 
             if ($model->load($this->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
@@ -161,9 +163,10 @@ class BookStockController extends Controller
         }
     }
 
-    public function actionExportAll($date){
-        $date = strtotime(User::setDate($date));
-// $date = 1668812400;
+    public function actionExportAll($from_date,$to_date,$status){
+        $from_date = strtotime(User::setDate($from_date));
+        $to_date = strtotime(User::setDate($to_date));
+
         $spreadsheet = new Spreadsheet();
         
         $spreadsheet->setActiveSheetIndex(0);
@@ -184,9 +187,11 @@ class BookStockController extends Controller
         $sheet->setCellValue('K1', 'ID');
         
     
-        $stmt = Yii::$app->db->createCommand('SELECT b.isbn,b.author,b.title,b.yop,b.qty,b.item_type,b.condition,b.price,b.barcode,bs.status,b.location,bs.book_id FROM `book` b LEFT JOIN book_stock bs ON b.id = bs.book_id WHERE bs.status =:status AND bs.stock_date=:stock_date GROUP BY b.barcode')
-        ->bindValue(':status',1)
-        ->bindValue(':stock_date',$date)
+        // $stmt = Yii::$app->db->createCommand('SELECT b.isbn,b.author,b.title,b.yop,b.qty,b.item_type,b.condition,b.price,b.barcode,bs.status,b.location,bs.book_id FROM `book` b LEFT JOIN book_stock bs ON b.id = bs.book_id WHERE bs.status =:status AND bs.stock_date=:stock_date GROUP BY b.barcode')
+        $stmt = Yii::$app->db->createCommand('SELECT b.isbn,b.author,b.title,b.yop,b.qty,b.item_type,b.condition,b.price,b.barcode,bs.status,b.location,bs.book_id FROM `book` b LEFT JOIN book_stock bs ON b.id = bs.book_id WHERE bs.stock_date BETWEEN :from_date AND :to_date AND bs.status =:status GROUP BY b.barcode')
+        ->bindValue(':status',$status)
+        ->bindValue(':from_date',$from_date)
+        ->bindValue(':to_date',$to_date)
         ->queryAll();
     
     
@@ -409,12 +414,12 @@ class BookStockController extends Controller
             $toDate = strtotime(User::setDate(Yii::$app->request->getBodyParam('toDate')));
             $condition = Yii::$app->request->getBodyParam('condition');
 
-            if ($condition == 'all-available') {
-               return $this->actionExportAll($fromDate);
-               exit;
-            } else {
-              # code...
-            }
+            // if ($condition == 'all-available') {
+            //    return $this->actionExportAll($fromDate);
+            //    exit;
+            // } else {
+            //   # code...
+            // }
             
       }
     }

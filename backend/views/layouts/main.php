@@ -43,7 +43,7 @@ AppAsset::register($this);
                             <!-- LOGO -->
                             <a href="<?= Url::to(['/site/index']) ?>" class="topnav-logo">
                                 <span class="topnav-logo-lg">
-                                    <img src="assets_ui/images/uongozi_logo.png" alt="" height="60" width="100">
+                                    <!-- <img src="assets_ui/images/uongozi_logo.png" alt="" height="60" width="100"> -->
                                 </span>
                             </a>
 
@@ -230,7 +230,7 @@ AppAsset::register($this);
                         <div class="row">
                             <div class="col-md-6">
                                 <center>
-                                <script>document.write(new Date().getFullYear())</script> © Uongozi Institute
+                                <!-- <script>document.write(new Date().getFullYear())</script> © Uongozi Institute -->
                                 </center>
                             </div>
                         </div>

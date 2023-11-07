@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="card">
                     <div class="card-body">
                     <div id="show-category-form">
-                        <img src="assets_ui/images/uongozi_logo.png" alt="" id="uongozi-logo" height="">
+                        <!-- <img src="assets_ui/images/uongozi_logo.png" alt="" id="uongozi-logo" height=""> -->
                     </div>
 
                     </div> <!-- end card body-->

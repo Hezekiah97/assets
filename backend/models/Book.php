@@ -79,12 +79,11 @@ class Book extends \yii\db\ActiveRecord
           $file->saveAs($path . $tmp_file);
         } else {
           mkdir($path, 0777, true);
+          $file->saveAs($path . $tmp_file);
         }
-        $file->saveAs($path . $tmp_file);
-
         return true;
       } else {
-        Return 'validation failed';
+        return 'validation failed';
       }
     }
 }
